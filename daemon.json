@@ -1,0 +1,4 @@
+{
+    "hosts": ["unix://", "tcp://0.0.0.0:2375"],
+    "experimental": true
+}
