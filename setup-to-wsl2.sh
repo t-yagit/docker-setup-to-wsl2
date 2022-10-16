@@ -1,5 +1,3 @@
-DOCKER_DIR=/mnt/wsl/shared-docker
-
 sudo apt-get update
 sudo apt-get install \
     ca-certificates \
@@ -18,9 +16,4 @@ sudo service docker stop
 sudo service docker start
 sudo gpasswd -a ${whoami} docker
 sudo chgrp docker /var/run/docker.sock
-
-if [ ! -S "$DOCKER_DIR" ]; then
-  mkdir -pm o=,ug=rwx "$DOCKER_DIR"
-  chgrp docker "$DOCKER_DIR"
-fi
 exit
