@@ -11,7 +11,13 @@ echo \
 sudo apt-get update
 # apt-cache madison docker-ce
 sudo apt-get install -y docker-ce=5:20.10.18~3-0~ubuntu-focal docker-ce-cli=5:20.10.18~3-0~ubuntu-focal containerd.io docker-compose-plugin
-sudo cp daemon.json /etc/docker/
+sudo cat <<EOF > /etc/docker/daemon.json
+{
+    "tls": false,
+    "hosts": ["tcp://0.0.0.0:2375"],
+    "experimental": true
+}
+EOF
 sudo service docker stop
 sudo service docker start
 sudo gpasswd -a ${whoami} docker
